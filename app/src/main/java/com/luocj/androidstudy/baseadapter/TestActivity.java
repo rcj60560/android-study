@@ -5,7 +5,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -23,9 +22,9 @@ import com.luocj.baselib.impl.OnItemClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseAdapterActivity extends AppCompatActivity {
+public class TestActivity extends AppCompatActivity {
 
-    private static final String TAG = BaseAdapterActivity.class.getSimpleName();
+    private static final String TAG = TestActivity.class.getSimpleName();
     private List<String> data = new ArrayList<>();
 
     @Override
@@ -43,12 +42,12 @@ public class BaseAdapterActivity extends AppCompatActivity {
         rv.setLayoutManager(new GridLayoutManager(this, 2));
         MyBaseAdapter adapter = new MyBaseAdapter(R.layout.item_cell, data);
         rv.setAdapter(adapter);
-//        adapter.setOnItemClickListener(new OnItemClickListener() {
-//            @Override
-//            public void onItemClick(BaseAdapter adapter, View view, int position) {
-//                Log.i(TAG, "onItemClick: " + position);
-//            }
-//        });
+        adapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseAdapter adapter, View view, int position) {
+                Log.i(TAG, "onItemClick: " + position);
+            }
+        });
 
         adapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
@@ -60,7 +59,7 @@ public class BaseAdapterActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 40; i++) {
             data.add(String.valueOf(i));
         }
     }
@@ -74,7 +73,6 @@ public class BaseAdapterActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
-
     }
 
     private class MyAdapter extends RecyclerView.Adapter<MyAdapter.Holder> {

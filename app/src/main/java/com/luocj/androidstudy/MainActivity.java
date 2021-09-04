@@ -1,23 +1,52 @@
 package com.luocj.androidstudy;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
-import com.luocj.androidstudy.baseadapter.BaseAdapterActivity;
+import com.luocj.androidstudy.baseadapter.TestActivity;
+import com.luocj.common.BaseMVPActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseMVPActivity<MainPresenter> implements MainContract.View {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        
+    public void showData() {
+        Log.i(TAG, "showData: ");
+    }
+
+    @Override
+    protected void initListener() {
+        Log.i(TAG, "initListener: ");
+    }
+
+    @Override
+    protected void initData() {
+        Log.i(TAG, "initData: ");
+    }
+
+    @Override
+    protected void initView() {
+        Log.i(TAG, "initView: ");
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected MainPresenter createPresenter() {
+        return new MainPresenter();
+    }
+
+    @Override
+    public void showError(String msg) {
+        Log.i(TAG, "showError: ");
     }
 
     public void baseAdapter(View view) {
-        startActivity(new Intent(this, BaseAdapterActivity.class));
+        startActivity(new Intent(this, TestActivity.class));
     }
 }

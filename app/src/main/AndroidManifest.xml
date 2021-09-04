@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".baseadapter.BaseAdapterActivity"
+            android:name=".baseadapter.TestActivity"
             android:exported="true" />
         <activity android:name=".MainActivity">
             <intent-filter>
