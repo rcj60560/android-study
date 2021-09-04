@@ -9,11 +9,11 @@ import java.util.List;
 import io.reactivex.Observable;
 
 public interface MainContract {
-    interface View extends IView{
+    interface View extends IView {
         void showData();
     }
 
-    interface Model extends IModel{
+    interface Model extends IModel {
         Observable<BaseHttpResult<List<TestNews>>> getGankData();
     }
 }

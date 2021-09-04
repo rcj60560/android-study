@@ -2,6 +2,7 @@ package com.luocj.common.mvp;
 
 import android.app.Activity;
 
+import com.trello.rxlifecycle2.LifecycleProvider;
 import com.trello.rxlifecycle2.internal.Preconditions;
 
 import io.reactivex.disposables.CompositeDisposable;
@@ -63,4 +64,13 @@ public abstract class BasePresenter<M extends IModel, V extends IView> implement
             compositeDisposable.clear();// 保证 Activity 结束时取消所有正在执行的订阅
         }
     }
+
+    protected <T> LifecycleProvider<T> getLifecycleProvider() {
+        LifecycleProvider<T> provider = null;
+        if (null != mView && mView instanceof LifecycleProvider) {
+            provider = (LifecycleProvider<T>) mView;
+        }
+        return provider;
+    }
+
 }

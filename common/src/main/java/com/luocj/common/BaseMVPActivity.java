@@ -9,7 +9,7 @@ import com.luocj.common.mvp.IView;
 
 public abstract class BaseMVPActivity<T extends BasePresenter> extends BaseActivity implements IView {
 
-    private T mPresenter;
+    protected T mPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

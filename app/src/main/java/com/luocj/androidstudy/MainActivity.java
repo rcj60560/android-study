@@ -1,10 +1,8 @@
 package com.luocj.androidstudy;
 
-import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
-import com.luocj.androidstudy.baseadapter.TestActivity;
 import com.luocj.common.BaseMVPActivity;
 
 public class MainActivity extends BaseMVPActivity<MainPresenter> implements MainContract.View {
@@ -47,6 +45,8 @@ public class MainActivity extends BaseMVPActivity<MainPresenter> implements Main
     }
 
     public void baseAdapter(View view) {
-        startActivity(new Intent(this, TestActivity.class));
+//        startActivity(new Intent(this, TestActivity.class));
+        mPresenter.requestData();
+
     }
 }
