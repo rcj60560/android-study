@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +17,15 @@ import android.view.ViewGroup;
 import com.luocj.androidstudy.R;
 import com.luocj.baselib.BaseAdapter;
 import com.luocj.baselib.BaseViewHolder;
+import com.luocj.baselib.impl.OnItemChildClickListener;
+import com.luocj.baselib.impl.OnItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BaseAdapterActivity extends AppCompatActivity {
 
+    private static final String TAG = BaseAdapterActivity.class.getSimpleName();
     private List<String> data = new ArrayList<>();
 
     @Override
@@ -35,8 +40,22 @@ public class BaseAdapterActivity extends AppCompatActivity {
 
         initData();
         RecyclerView rv = findViewById(R.id.rv);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setAdapter(new MyBaseAdapter(R.layout.item_cell, data));
+        rv.setLayoutManager(new GridLayoutManager(this, 2));
+        MyBaseAdapter adapter = new MyBaseAdapter(R.layout.item_cell, data);
+        rv.setAdapter(adapter);
+//        adapter.setOnItemClickListener(new OnItemClickListener() {
+//            @Override
+//            public void onItemClick(BaseAdapter adapter, View view, int position) {
+//                Log.i(TAG, "onItemClick: " + position);
+//            }
+//        });
+
+        adapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseAdapter adapter, View view, int position) {
+                Log.i(TAG, "onItemChildClick: " + position);
+            }
+        });
 
     }
 
@@ -91,6 +110,7 @@ public class BaseAdapterActivity extends AppCompatActivity {
         @Override
         protected void convert(BaseViewHolder holder, String item) {
             holder.setText(R.id.textview, item);
+            holder.addOnItemChildClick(R.id.btn);
         }
     }
 }

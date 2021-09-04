@@ -1,9 +1,8 @@
 package com.luocj.baselib;
 
 import android.util.SparseArray;
+import android.view.PointerIcon;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.IdRes;
@@ -11,16 +10,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.LinkedHashSet;
+
 public class BaseViewHolder extends RecyclerView.ViewHolder {
 
-    private final View contentView;
-    private final SparseArray<View> views;
+    private View contentView;
+    private SparseArray<View> views;
+    private LinkedHashSet<Integer> childClickViewIds;
     private BaseAdapter adapter;
 
     public BaseViewHolder(@NonNull View view) {
         super(view);
         this.views = new SparseArray<>();
         this.contentView = view;
+        this.childClickViewIds = new LinkedHashSet<Integer>();
     }
 
     public View getContentView() {
@@ -51,7 +54,28 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
             view = itemView.findViewById(viewId);
             views.put(viewId, view);
         }
-
         return (T) view;
+    }
+
+    public BaseViewHolder addOnItemChildClick(@IdRes int... viewIds) {
+        for (int viewId : viewIds) {
+            childClickViewIds.add(viewId);
+            View view = getView(viewId);
+            if (view != null) {
+                if (!view.isClickable()) {
+                    view.setClickable(true);
+                }
+
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (adapter.getOnItemChildClickListener() != null) {
+                            adapter.setOnItemChildClick(v, getLayoutPosition());
+                        }
+                    }
+                });
+            }
+        }
+        return this;
     }
 }
