@@ -3,9 +3,7 @@ package com.luocj.androidstudy;
 import android.util.Log;
 
 import com.luocj.common.mvp.BaseHttpResult;
-import com.luocj.common.mvp.BaseObserver;
 import com.luocj.common.mvp.BasePresenter;
-import com.luocj.common.rx.RxSchedulers;
 
 import java.util.List;
 

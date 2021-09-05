@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">AndroidStudy</string>
     <string name="base_adapter">BaseAdapter</string>
+    <string name="dolphin">海豚记账</string>
+    <string name="detail">明细</string>
+    <string name="add">记账</string>
+    <string name="mine">我的</string>
 </resources>

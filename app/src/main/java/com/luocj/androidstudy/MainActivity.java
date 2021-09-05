@@ -1,5 +1,6 @@
 package com.luocj.androidstudy;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
@@ -44,9 +45,8 @@ public class MainActivity extends BaseMVPActivity<MainPresenter> implements Main
         Log.i(TAG, "showError: ");
     }
 
-    public void baseAdapter(View view) {
-//        startActivity(new Intent(this, TestActivity.class));
-        mPresenter.requestData();
 
+    public void shark(View view) {
+        startActivity(new Intent(this,MainSharkActivity.class));
     }
 }

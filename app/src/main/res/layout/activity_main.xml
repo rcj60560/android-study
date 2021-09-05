@@ -14,8 +14,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="baseAdapter"
-            android:text="封装baseadapter" />
+            android:onClick="shark"
+            android:text="鲨鱼记账" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

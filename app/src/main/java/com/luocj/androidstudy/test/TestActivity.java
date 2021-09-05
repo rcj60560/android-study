@@ -1,4 +1,4 @@
-package com.luocj.androidstudy.baseadapter;
+package com.luocj.androidstudy.test;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
