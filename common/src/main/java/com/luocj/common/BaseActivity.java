@@ -15,26 +15,15 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-        Intent intent = getIntent();
-        if (intent != null) {
-            getIntent(intent);
-        }
         initView();
         initData();
         initListener();
     }
-
-    protected  void initListener(){
-
-    };
+    protected abstract void initView();
 
     protected abstract void initData();
 
-    protected abstract void initView();
-
-    private Intent getIntent(Intent intent) {
-        return intent;
-    }
+    protected abstract void initListener();
 
     protected abstract int getLayoutId();
 

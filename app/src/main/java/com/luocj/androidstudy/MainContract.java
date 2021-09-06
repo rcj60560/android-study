@@ -10,7 +10,7 @@ import io.reactivex.Observable;
 
 public interface MainContract {
     interface View extends IView {
-        void showData();
+        void showToast();
     }
 
     interface Model extends IModel {

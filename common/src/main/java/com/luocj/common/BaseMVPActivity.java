@@ -23,6 +23,14 @@ public abstract class BaseMVPActivity<T extends BasePresenter> extends BaseActiv
     protected abstract T createPresenter();
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mPresenter != null) {
+            mPresenter.detachView();
+        }
+    }
+
+    @Override
     public void showLoading() {
         showLoadingDialog();
     }
@@ -33,11 +41,8 @@ public abstract class BaseMVPActivity<T extends BasePresenter> extends BaseActiv
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mPresenter != null) {
-            mPresenter.detachView();
-        }
+    public void showError(String msg) {
+
     }
 }
 

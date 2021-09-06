@@ -35,4 +35,8 @@ public class MainPresenter extends BasePresenter<MainContract.Model, MainContrac
 //                    }
 //                });
     }
+
+    public void showToast() {
+        getView().showToast();
+    }
 }
